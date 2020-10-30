@@ -5,7 +5,9 @@
  */
 package Logica;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -13,33 +15,80 @@ import java.util.List;
  */
 public class Usuario {
     //Daniel ACM1PT
-    int id;
+    String id;
     String nombre;
-    String host;
     String password;
     
     List<Usuario> ListaContactos;
 
-    public Usuario(int id, String nombre, String host, String password, List<Usuario> ListaContactos) {
+    public Usuario(String id, String nombre,  String password, List<Usuario> ListaContactos) {
         this.id = id;
         this.nombre = nombre;
-        this.host = host;
         this.password = password;
         this.ListaContactos = ListaContactos;
     }
 
-    public Usuario(int id, String nombre, String host, String password) {
+    public Usuario(String id, String nombre, String password) {
         this.id = id;
         this.nombre = nombre;
-        this.host = host;
         this.password = password;
+        ListaContactos = new ArrayList<>();
     }
 
-    public int getId() {
+    public Usuario() {
+         this.id ="";
+        this.nombre = "";
+        this.password = "";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.nombre);
+        hash = 67 * hash + Objects.hashCode(this.password);
+        hash = 67 * hash + Objects.hashCode(this.ListaContactos);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+       
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.ListaContactos, other.ListaContactos)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre +  ", password=" + password + ", ListaContactos=" + ListaContactos + '}';
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -51,13 +100,7 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
+  
 
     public String getPassword() {
         return password;
@@ -75,11 +118,6 @@ public class Usuario {
         this.ListaContactos = ListaContactos;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", host=" + host + ", password=" + password + ", ListaContactos=" + ListaContactos + '}';
-    }
-    
     
     
     
